@@ -25,9 +25,7 @@
 			tbody
 			{
 				display: inline-block;
-				/*height: 100px;*/
 				overflow-y: scroll;
-				/*table-layout:fixed;*/
 			}
 			.add_button
 			{
@@ -36,10 +34,12 @@
 			}
 			.add_button, .del_button
 			{
+				cursor: pointer;
 				clip-path: circle(50% at 50% 50%);
 			}
 			.del_button:hover
 			{
+				cursor: hand;
 				filter: hue-rotate(-40deg);
 				transform: rotate(-90deg);
 			}
@@ -66,74 +66,52 @@
 				outline: none;
 			}
 		</style>
-		<template id="Entry">
-			<tr id=UUID>
-				<td>
-					<a href="javascript:removeElement('UUID')">
-						<img class="del_button" draggable="false" src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53%0D%0AMy5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOC4zNSAyOC4zNSI+CiAgICA8ZGVmcz4KICAg%0D%0AICAgICA8c3R5bGU+LmNscy0xe2ZpbGw6I2ZmMmQwMDt9LmNscy0ye2ZpbGw6I2Q5MDAwMDt9LmNs%0D%0Acy0ze2ZpbGw6bm9uZTtzdHJva2U6IzYwMzgxMztzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2Ut%0D%0AbWl0ZXJsaW1pdDoxMDtzdHJva2Utd2lkdGg6NHB4O30uY2xzLTR7ZmlsbDojZWQxZTc5O30uY2xz%0D%0ALTV7ZmlsbDojNjAzODEzO308L3N0eWxlPgogICAgPC9kZWZzPgogICAgPHRpdGxlPlhJbkNpcmNs%0D%0AZTwvdGl0bGU+CiAgICA8Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjE0LjE3IiBjeT0iMTQuMTci%0D%0AIHI9IjEzLjY3Ii8+CiAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xNC4xNywxQTEzLjE4LDEz%0D%0ALjE4LDAsMSwxLDEsMTQuMTcsMTMuMTksMTMuMTksMCwwLDEsMTQuMTcsMW0wLTFBMTQuMTgsMTQu%0D%0AMTgsMCwxLDAsMjguMzUsMTQuMTcsMTQuMTgsMTQuMTgsMCwwLDAsMTQuMTcsMFoiIHRyYW5zZm9y%0D%0AbT0idHJhbnNsYXRlKDAgMCkiLz4KICAgIDxsaW5lIGNsYXNzPSJjbHMtMyIgeDE9IjcuOTgiIHkx%0D%0APSIyMC4zNyIgeDI9IjIwLjM3IiB5Mj0iNy45OCIvPgogICAgPGxpbmUgY2xhc3M9ImNscy00IiB4%0D%0AMT0iNy45OCIgeTE9IjIwLjM3IiB4Mj0iMjAuMzciIHkyPSI3Ljk4Ii8+CiAgICA8bGluZSBjbGFz%0D%0Acz0iY2xzLTMiIHgxPSI3Ljk4IiB5MT0iNy45OCIgeDI9IjIwLjM3IiB5Mj0iMjAuMzciLz4KICAg%0D%0AIDxsaW5lIGNsYXNzPSJjbHMtNSIgeDE9IjcuOTgiIHkxPSI3Ljk4IiB4Mj0iMjAuMzciIHkyPSIy%0D%0AMC4zNyIvPgo8L3N2Zz4=" width="28" alt=""/>
-					</a>
-				</td>
-				<td>
-					<div class="reminder">
-						Replace
-					</div>
-				</td>
-			</tr>
-		</template>
-		<!--suppress JSUnusedLocalSymbols -->
 		<script>
-            entryNumber = 0;
             function addEntry()
             {
-                function f(id)
-                {
-                    return document.getElementById(id);
-                }
-                function g(id)
-                {
-                    return f(id).innerHTML;
-                }
-                if(g("Input") !== "")
-                {
-                    entryNumber++;
-                    let innerHTML = g("Entry")
-                        .replace("Replace", g("Input"))
-                        .replace("UUID", "Entry #" + entryNumber)
-                        .replace("UUID", "Entry #" + entryNumber);
-                    f("Table").innerHTML += innerHTML;
-                    $("#" + entryNumber).attr("Wubba", 'Wooo');
-                }
-            }
-            function removeElement(elementId)
-            {
-                // From: https://www.abeautifulsite.net/adding-and-removing-elements-on-the-fly-using-javascript
-                // Removes an element from the document
-                // $("#"+elementId).parent().remove($("#"+elementId));
-                const element = document.getElementById(elementId);
-                element.parentNode.removeChild(element);
+                $("#DoubleClick").clone()[0].play();
+                var entry = $("#Entry").clone()
+                                       .removeAttr("id");
+                entry.find(".add_button")
+                     .removeClass()
+                     .addClass("del_button")
+                     .removeAttr("onclick")
+                     .click(function()
+                            {
+                                $("#SingleClick").clone()[0].play();
+                                $(this).off('click');
+                                entry.hide(500,()=>entry.remove());
+                            });
+                entry.find("div")
+                     .removeAttr("contenteditable");
+                entry.appendTo("#Table")
+                     .hide()
+                     .fadeIn();
             }
 		</script>
 	</head>
 	<body>
+		<audio id="SingleClick">
+			<source src="SingleClick.wav" type="audio/wav">
+		</audio>
+		<audio id="DoubleClick">
+			<source src="DoubleClick.wav" type="audio/wav">
+		</audio>
 		<p style="font-size: 40px;text-align: center">
 			Todo List
 		</p>
 		<table>
-			<thead>
-				<tr>
+			<tbody id="Table">
+				<tr id="Entry">
 					<td>
-						<a href="javascript:addEntry();">
-							<img class="add_button" draggable="false" src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53%0D%0AMy5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOC4zNSAyOC4zNSI+CiAgICA8ZGVmcz4KICAg%0D%0AICAgICA8c3R5bGU+LmNscy0xe2ZpbGw6I2ZmMmQwMDt9LmNscy0ye2ZpbGw6I2Q5MDAwMDt9LmNs%0D%0Acy0ze2ZpbGw6bm9uZTtzdHJva2U6IzYwMzgxMztzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2Ut%0D%0AbWl0ZXJsaW1pdDoxMDtzdHJva2Utd2lkdGg6NHB4O30uY2xzLTR7ZmlsbDojZWQxZTc5O30uY2xz%0D%0ALTV7ZmlsbDojNjAzODEzO308L3N0eWxlPgogICAgPC9kZWZzPgogICAgPHRpdGxlPlhJbkNpcmNs%0D%0AZTwvdGl0bGU+CiAgICA8Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjE0LjE3IiBjeT0iMTQuMTci%0D%0AIHI9IjEzLjY3Ii8+CiAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xNC4xNywxQTEzLjE4LDEz%0D%0ALjE4LDAsMSwxLDEsMTQuMTcsMTMuMTksMTMuMTksMCwwLDEsMTQuMTcsMW0wLTFBMTQuMTgsMTQu%0D%0AMTgsMCwxLDAsMjguMzUsMTQuMTcsMTQuMTgsMTQuMTgsMCwwLDAsMTQuMTcsMFoiIHRyYW5zZm9y%0D%0AbT0idHJhbnNsYXRlKDAgMCkiLz4KICAgIDxsaW5lIGNsYXNzPSJjbHMtMyIgeDE9IjcuOTgiIHkx%0D%0APSIyMC4zNyIgeDI9IjIwLjM3IiB5Mj0iNy45OCIvPgogICAgPGxpbmUgY2xhc3M9ImNscy00IiB4%0D%0AMT0iNy45OCIgeTE9IjIwLjM3IiB4Mj0iMjAuMzciIHkyPSI3Ljk4Ii8+CiAgICA8bGluZSBjbGFz%0D%0Acz0iY2xzLTMiIHgxPSI3Ljk4IiB5MT0iNy45OCIgeDI9IjIwLjM3IiB5Mj0iMjAuMzciLz4KICAg%0D%0AIDxsaW5lIGNsYXNzPSJjbHMtNSIgeDE9IjcuOTgiIHkxPSI3Ljk4IiB4Mj0iMjAuMzciIHkyPSIy%0D%0AMC4zNyIvPgo8L3N2Zz4=" width="28" alt=""/>
-						</a>
+						<img class="add_button" tabindex="0" onclick="addEntry()" draggable="false" src="XInCircle.svg" width="28" alt=""/>
 					</td>
 					<td>
-						<div class="reminder" contenteditable="true" id="Input">
+						<div class="reminder" contenteditable>
 							Add Stuff!
 						</div>
 					</td>
 				</tr>
-			</thead>
-			<tbody id="Table">
 			</tbody>
 		</table>
 	</body>

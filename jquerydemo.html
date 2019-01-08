@@ -1,41 +1,34 @@
-<html>
+<html lang="en">
 	<head>
-		<title>The jQuery Example</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script>
-            $(document).ready(function()
-                              {
-                                  let div = $("div");
-                                  let f = function()
-                                      {
-                                          $(this).before('<div class="div"></div>');
-                                          console.log(div.click);
-                                      };
-                                  div.on("")
-                                  div.click(f);
-                                  div.click(f);
-                                  div.click(f);
-                              });
+            $(function()
+              {
+                  $("#Toggle").click(function()
+                                    {
+                                        $("div").toggle("fast")
+                                    });
+                  $("#On").click(function()
+                                    {
+                                        $("div").toggle(true)
+                                    });
+                  $("#Off").click(function()
+                                    {
+                                        $("div").toggle(false)
+                                    });
+              })
 		</script>
-
-		<style>
-			.div
-			{
-				background: gray;
-				margin: 10px;
-				padding: 12px;
-				border: 2px solid #666;
-				width: 60px;
-			}
-		</style>
 	</head>
-
 	<body>
-		<p>Click on any square below:</p>
-		<span id="result"> </span>
-
-		<div class="div" style="background-color:blue;"></div>
-		<div class="div" style="background-color:green;"></div>
-		<div class="div" style="background-color:red;"></div>
+		<div style="background:darkblue;height:100px;width:100px"></div>
+		<button id="Toggle">
+			Toggler
+		</button>
+		<button id="On">
+			On
+		</button>
+		<button id="Off">
+			Off
+		</button>
 	</body>
 </html>
