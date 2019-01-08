@@ -7,6 +7,7 @@
 			@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
 			body
 			{
+				zoom:130%;
 				filter: drop-shadow(0 0 0.25rem blueviolet);
 				text-shadow: 0 0 1px rgba(0, 0, 0, .5);
 				user-select: none;
@@ -82,7 +83,7 @@
                                 $(this).off('click');
                                 entry.hide(500,()=>entry.remove());
                             });
-                entry.find("div")
+                entry.find(".reminder")
                      .removeAttr("contenteditable");
                 entry.appendTo("#Table")
                      .hide()
@@ -104,7 +105,7 @@
 			<tbody id="Table">
 				<tr id="Entry">
 					<td>
-						<img class="add_button" tabindex="0" onclick="addEntry()" draggable="false" src="XInCircle.svg" width="28" alt=""/>
+						<img class="add_button" tabindex="0" onclick="addEntry()" draggable="false" src="XInCircle.svg" width="28px" alt=""/>
 					</td>
 					<td>
 						<div class="reminder" contenteditable>
