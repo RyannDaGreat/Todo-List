@@ -1,0 +1,12 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.35 28.35">
+    <defs>
+        <style>.cls-1{fill:#ff2d00;}.cls-2{fill:#d90000;}.cls-3{fill:none;stroke:#603813;stroke-linecap:round;stroke-miterlimit:10;stroke-width:4px;}.cls-4{fill:#ed1e79;}.cls-5{fill:#603813;}</style>
+    </defs>
+    <title>XInCircle</title>
+    <circle class="cls-1" cx="14.17" cy="14.17" r="13.67"/>
+    <path class="cls-2" d="M14.17,1A13.18,13.18,0,1,1,1,14.17,13.19,13.19,0,0,1,14.17,1m0-1A14.18,14.18,0,1,0,28.35,14.17,14.18,14.18,0,0,0,14.17,0Z" transform="translate(0 0)"/>
+    <line class="cls-3" x1="7.98" y1="20.37" x2="20.37" y2="7.98"/>
+    <line class="cls-4" x1="7.98" y1="20.37" x2="20.37" y2="7.98"/>
+    <line class="cls-3" x1="7.98" y1="7.98" x2="20.37" y2="20.37"/>
+    <line class="cls-5" x1="7.98" y1="7.98" x2="20.37" y2="20.37"/>
+</svg>
