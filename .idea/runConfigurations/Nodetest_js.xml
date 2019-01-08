@@ -1,5 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Nodetest.js" type="NodeJSConfigurationType" singleton="false" path-to-node="node" path-to-js-file="server.js" working-dir="$PROJECT_DIR$">
-    <method v="2" />
-  </configuration>
-</component>

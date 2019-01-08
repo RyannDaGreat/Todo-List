@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>The jQuery Example</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+		<script>
+            $(document).ready(function()
+                              {
+                                  let div = $("div");
+                                  let f = function()
+                                      {
+                                          $(this).before('<div class="div"></div>');
+                                          console.log(div.click);
+                                      };
+                                  div.on("")
+                                  div.click(f);
+                                  div.click(f);
+                                  div.click(f);
+                              });
+		</script>
+
+		<style>
+			.div
+			{
+				background: gray;
+				margin: 10px;
+				padding: 12px;
+				border: 2px solid #666;
+				width: 60px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<p>Click on any square below:</p>
+		<span id="result"> </span>
+
+		<div class="div" style="background-color:blue;"></div>
+		<div class="div" style="background-color:green;"></div>
+		<div class="div" style="background-color:red;"></div>
+	</body>
+</html>
